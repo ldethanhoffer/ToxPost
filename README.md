@@ -2,8 +2,8 @@
 
 This project aims to describe the toxicity of a comment posted on an online forum.
 
-We will break down the concept of toxicity into 6 different __categories__:<br><br>
-
+We will break down the concept of toxicity into 6 different __categories__:
+<br><br>
 <center>
 toxicity, severe toxicity, obscanity, threat, insult and identity hate
 </center>

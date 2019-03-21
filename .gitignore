@@ -1,4 +1,5 @@
-recourses/
 data/raw/
 original_project/
+recourses/
+src/__init.py__
 .ipynb_checkpoints/
