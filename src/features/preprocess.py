@@ -3,21 +3,29 @@ prepocess.py  (author: Louis de thanhoffer de Volcsey / git: ldethanhoffer)
 
 A module that preprocesses a tokenized document. It contains the functions:
 
-clean_document
 
+
+"""
+
+import re
+import tqdm
+from nltk.corpus import stopwords
+from sklearn.feature_extraction.text import TfidfVectorizer
+import numpy as np
+from scipy.sparse import csr_matrix
+from embed import load_embedding
+from sklearn.decomposition import PCA
+
+
+"""
+clean_document
 input:
     a tokenized document
     (optional) a list of admissible words
 returns:
     a cleaned document (optionally only containing admissible words)
-
-reduce_length
-
 """
 
-import re
-from nltk.corpus import stopwords
-from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Declare global variables:
 stopwords = stopwords.words("english")
@@ -89,20 +97,109 @@ def clean_document(document, admissible_words=None):
     return cleaned_document
 
 
-def shrink_document(document, length):
 
-    def TfIdf(corpus):
-        # transform each tokenized comment into one single string in order to use TfIdf
-        data_as_str = data_as_strings(data)
-        # compute Tfidf scores of the corpus:
-        tfidf = TfidfVectorizer()
-        scores = tfidf.fit_transform(data_as_str)
-        # transform sparse matrix:
+
+"""
+TfIdf: obtain the TfIdf information of a corpus:
+input: a corpus of tokenized documents
+output:
+    TfIdf['scores']: the matrix of TfIdf scores
+    TfIdf["column_to_vocab"]: a list assicating to column j of scores the corresponding word.
+    By default, scores is a sparse matrix, return as dense can be done optionally
+"""
+
+
+def TfIdf(corpus, dense=None):
+
+    def untok_corpus(corpus):
+        new_corpus = []
+        for i in range(0, len(corpus)):
+            new_corpus.append(" ".join(corpus[i]))
+        return new_corpus
+
+    # transform each tokenized comment into one single string in order to use TfIdf
+    corpus = untok_corpus(corpus)
+    # compute Tfidf scores of the corpus:
+    tfidf = TfidfVectorizer()
+    scores = tfidf.fit_transform(corpus)
+    # (optional) transform to nonsparse matrix-format:
+    if dense:
         scores = scores.todense()
-        # TfIdf also assigns an index to each individual word. The following retrieves the word assigned to the index
-        column_to_vocab = tfidf.get_feature_names()
-        TfIdf_info = {'scores': scores, 'column_to_vocab': column_to_vocab}
+    # TfIdf also assigns an index to each individual word. The following retrieves the word assigned to the index
+    column_to_vocab = tfidf.get_feature_names()
+    TfIdf_info = {'scores': scores, 'column_to_vocab': column_to_vocab}
+    return TfIdf_info
 
-        return TfIdf_info
 
-    return shrunken_document
+"""
+shrink_corpus: shrink the length of each document in the corpus by keeping only the top TfIdf-scores
+input:
+    corpus: a corpus of documents
+    length: the maximal length of any document
+output:
+    new_corpus: a corpus of documents of length at most length.
+"""
+
+
+def shrink_corpus(corpus, length):
+    TfIdf_info = TfIdf(corpus)
+    scores = TfIdf_info['scores']
+    column_to_vocab = TfIdf_info['column_to_vocab']
+    new_corpus = []
+    print("TfIdf scores calculated...\n")
+    for i in tqdm.tqdm(range(0, len(corpus))):
+        # obtain nonzero columns:
+        row = scores.getrow(i)  # use getrow since scores is csr matrix
+        indices = csr_matrix.nonzero(row)[1]
+        # obtain the Tfidf-score of each word-index
+        entries = [scores[i, j] for j in indices]
+        # sort those scores and keep only the top ones
+        top_entries = np.argsort(entries)[-length:]
+        # get the corresponding column-index for each score
+        top_word_indices = [indices[j] for j in top_entries]
+        # get the corresponding word for each column index:
+        shrunken_comment = [column_to_vocab[j] for j in top_word_indices]
+        new_corpus.append(shrunken_comment)
+    return new_corpus
+
+
+"""
+embed a corus of documents in a vector space
+input:
+    corpus = a corpus of documents
+    embedding an embedding given as a word-vector dictionary
+
+"""
+
+
+def embed(corpus, embedding):
+    new_corpus = []
+    for doc in corpus:
+        emb_doc = [embedding[word] for word in doc]
+        new_corpus.append(emb_doc)
+    return new_corpus
+
+
+"""
+pca_reduce_features
+
+Applies pca to reduce the dimension of a set of n-dimensional features:
+
+"""
+
+
+def pca_reduce_features(features, dim, verbose=None):
+    pca = PCA(n_components=dim)
+    pca.fit(features)
+    reduced_features = pca.transform(features)
+    if verbose:
+        return reduced_features
+
+
+def preprocess():
+    pass
+
+
+# Driver
+if __name__ == "__main__":
+    pass

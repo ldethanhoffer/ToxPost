@@ -21,6 +21,7 @@ returns:
 
 import csv
 import numpy as np
+import tqdm
 
 
 def load_corpus(filename=" ", header=None, id=None):
@@ -45,7 +46,7 @@ def load_corpus(filename=" ", header=None, id=None):
         num_categories = len(row_1) - 1 - s
 
         # iterate over each datapoint:
-        for row in csvreader:
+        for row in tqdm.tqdm(csvreader):
             # skip over the header if necessary :
             if header:
                 header = False
