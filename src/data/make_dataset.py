@@ -12,9 +12,9 @@ options:
     id = specify if each document has an id label
 
 returns:
-    documents: an array of tokenized tuples for each document
-    labels: a numpy array of tuples for each label associated to a documents
-    data: a dictionary associating each document to its label
+
+    data: a list of the form [document, label]
+    where each entry consists of a tokenized document together with its associated label as a np array.
 
 """
 
@@ -75,6 +75,6 @@ def load_corpus(filename=" ", header=None, id=None):
     # print the progress:
     print("\ndone reading {}".format(filename))
     # get the data:
-    data = dict(zip(corpus, labels))
+    data = [[corpus[i], labels[i]] for i in range(0, len(corpus))]
 
-    return corpus, labels, data
+    return data
