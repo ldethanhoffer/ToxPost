@@ -31,29 +31,21 @@ def load_corpus(filename=" ", header=None, id=None):
 
     with open(filename) as datafile:
         csvreader = csv.reader(datafile)
-
-        # initialize the counter:
-        progress = 0
-
         # determine if the features have an id tag:
         if id:
             s = 1
         else:
             s = 0
-
         # determine the number of categories for the labels:
         row_1 = next(csvreader)
         num_categories = len(row_1) - 1 - s
-
         # iterate over each datapoint:
         for row in tqdm.tqdm(csvreader):
             # skip over the header if necessary :
             if header:
                 header = False
                 continue
-            # check the progress:
-            if progress % 10000 == 0:
-                print("reading document number: {}".format(progress))
+
             # read the document:
             document = row[s].split()
             # add the document to the corpus as a tuple:
@@ -66,9 +58,6 @@ def load_corpus(filename=" ", header=None, id=None):
                 categories.append(row[i])
             # add the label:
             labels.append(categories)
-
-            # increase the progress counter:
-            progress = progress + 1
 
         # turn the list of labels into a numpy array:
         labels = np.asarray(labels, dtype=int)

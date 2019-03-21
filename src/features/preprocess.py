@@ -13,7 +13,7 @@ from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
 from scipy.sparse import csr_matrix
-from embed import load_embedding
+from .embed import load_embedding
 from sklearn.decomposition import PCA
 
 

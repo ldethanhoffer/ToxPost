@@ -5,6 +5,7 @@ A module designed to handle word embeddings:
 
 """
 import numpy as np
+import tqdm
 
 
 """
@@ -19,7 +20,7 @@ def load_embedding(file):
         words = set()
         embedding = {}
 
-        for line in f:
+        for line in tqdm.tqdm(f):
             line = line.strip().split()
             curr_word = line[0]
             words.add(curr_word)
