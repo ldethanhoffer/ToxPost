@@ -1,6 +1,6 @@
 data/raw/
 original_project/
 recourses/
-src/data__pycache__
+src/data/__pycache__
 src/__init.py__
 .ipynb_checkpoints/
