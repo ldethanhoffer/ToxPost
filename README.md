@@ -1,5 +1,8 @@
 # Detection of Toxic Comments
 
+### Overview
+------------
+
 This project aims to describe the toxicity of a comment posted on an online forum.
 
 We will break down the concept of toxicity into 6 different __categories__:
@@ -68,3 +71,7 @@ In order to fit a neural net on the corpus, we will embed each word into a vecto
 │   
 └── README.md          
 ```
+
+
+### preprocessing pipeline
+------------
