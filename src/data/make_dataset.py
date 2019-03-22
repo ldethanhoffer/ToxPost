@@ -48,8 +48,7 @@ def load_corpus(filename=" ", header=None, id=None):
 
             # read the document:
             document = row[s].split()
-            # add the document to the corpus as a tuple:
-            document = tuple(document)
+            # add the document to the corpus:
             corpus.append(document)
 
             # read the labels:

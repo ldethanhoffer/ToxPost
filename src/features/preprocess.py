@@ -9,11 +9,14 @@ A module that preprocesses a tokenized document. It contains the functions:
 
 import re
 import tqdm
+import csv
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
+import string
 from scipy.sparse import csr_matrix
 from .embed import load_embedding
+from src.data.make_dataset import load_corpus
 from sklearn.decomposition import PCA
 
 
@@ -50,8 +53,8 @@ replacement_list = [
 ]
 
 
-# The functions below cleans up each comment in the corpus.
-def clean_document(document, admissible_words=None):
+# The functions below cleans up each document in the corpus.
+def clean_corpus(corpus, admissible_words=None):
 
     # The functions below replaces a word according to the custom replacement list defined above:
     def replace(word, replacement_list):
@@ -64,8 +67,7 @@ def clean_document(document, admissible_words=None):
         cleaned_word = word
         # strip extra whitespaces:
         cleaned_word = cleaned_word.lstrip().rstrip()
-        # Remove if hyperlink
-        cleaned_word = re.sub(r"(https?:\/\/)(\s)?(www\.)?(\s?)(\w+\.)*([\w\-\s]+\/)*([\w-]+)\/?", "", cleaned_word)
+        # Remove if hyperlink, still work on it
         # Remove hashtags:
         cleaned_word = re.sub(r"#", "", cleaned_word)
         # remove numbers:
@@ -73,7 +75,7 @@ def clean_document(document, admissible_words=None):
         # Remove apostrophes:
         cleaned_word = re.sub(r"’", "", cleaned_word)
         # remove Punctuation and split 's, 't, 've with a space for filter:
-        cleaned_word = re.sub(r"['+string.punctuation+']+", "", cleaned_word)
+        cleaned_word = cleaned_word.translate(str.maketrans('', '', string.punctuation))
         # Remove if 2 or fewer letters:
         cleaned_word = re.sub(r"^\w\w?$", "", cleaned_word)
         # remove if an article:
@@ -90,13 +92,16 @@ def clean_document(document, admissible_words=None):
             cleaned_word = ""
         return cleaned_word
 
-    # clean each word in the document:
-    cleaned_document = [clean_word(word, admissible_words) for word in document]
-    # remove empty words:
-    cleaned_document = [word for word in cleaned_document if word != ""]
-    return cleaned_document
+    # next we clean each document in the corpus:
+    def clean_document(document, admissible_words=None):
+        # clean each word in the document:
+        cleaned_document = [clean_word(word, admissible_words) for word in document]
+        # remove empty words:
+        cleaned_document = [word for word in cleaned_document if word != ""]
+        return cleaned_document
 
-
+    # finally, we clean the whole corpus:
+    return [clean_document(document, admissible_words) for document in tqdm.tqdm(corpus)]
 
 
 """
@@ -197,7 +202,14 @@ def pca_reduce_features(features, dim, verbose=None):
 
 
 def preprocess():
-    pass
+    input_path = "./data/raw/train.csv"
+    output_path = "./data/interim/train.csv"
+    data = load_corpus(input_path, header=True, id=True)
+    corpus = [datapoint[0] for datapoint in data]
+    cleaned_corpus = clean_corpus(corpus)
+    with open(output_path, "w") as f:
+        wr = csv.writer(f, delimiter="\n")
+        wr.writerow(cleaned_corpus)
 
 
 # Driver
