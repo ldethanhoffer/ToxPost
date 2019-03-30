@@ -1,6 +1,6 @@
 data/
 original_project/
-recourses/
+resources/
 src/data/__pycache__
 src/features/__pycache__
 .ipynb_checkpoints/
