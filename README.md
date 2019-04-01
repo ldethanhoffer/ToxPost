@@ -40,10 +40,10 @@ In order to fit a neural net on the corpus, we will embed each word into a vecto
 ```
 │
 ├── data
-│   ├── raw         <- the original data
-│   ├── cleaned     <- the cleaned data
-│   ├── shrunken    <- the shrunken data
-│   └── embedded    <- the embedded data
+│   ├── raw            <- the original data
+│   ├── cleaned        <- the cleaned data
+│   ├── shrunken       <- the shrunken data
+│   └── embedded       <- the embedded data
 │
 ├── models             <- Trained models, model predictions, or model summaries
 │
