@@ -69,7 +69,7 @@ In order to fit a neural net on the corpus, we will embed each word into a vecto
 │     │   └── train_model.py
 │     │
 │     └── visualization  <- Scripts to create exploratory and results oriented visualizations
-│       └── visualize.py
+│      └── visualize.py
 │
 ├── requirements.txt
 │   
