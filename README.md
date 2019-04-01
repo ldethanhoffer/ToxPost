@@ -38,34 +38,37 @@ In order to fit a neural net on the corpus, we will embed each word into a vecto
 
 
 ```
-│
 ├── data
-│   ├── raw            <- the original data
-│   ├── cleaned        <- the cleaned data
-│   ├── shrunken       <- the shrunken data
-│   └── embedded       <- the embedded data
+│    ├── raw                <- the raw data
+│    ├── cleaned            <- the cleaned data 
+│    ├── shrunken           <- the shrunken data
+│    └── embedded           <- the embedded data
 │
-├── models             <- Trained models, model predictions, or model summaries
+├── models                  <- the Trained models
+│
 │
 ├── notebooks
-│   ├── explore        <- guides you through the data exploration steps 
-│   └── preprocess     <- guides you through the preprocessing steps   
+│     ├── explore            <- guides you through the data exploration steps 
+│     └── preprocess         <- guides you through the preprocessing steps   
 │
 │
 ├── src 
-│   ├── __init__.py
-│   │
-│   ├── data           <- Scripts to download or generate data
-│   │   └── make_dataset.py
-│   │
-│   ├── features       <- Scripts to turn raw data into features for modeling
-│   │   └── build_features.py
-│   │
-│   ├── models         <- Scripts to train models and then use trained models to make predictions                 
-│   │   ├── predict_model.py
-│   │   └── train_model.py
-│   │
-│   └── visualization  <- Scripts to create exploratory and results oriented visualizations
+│     ├── __init__.py         <- turns the file into a py module
+│     │
+│     ├── data                <- scipt to import the raw data
+│     │   └── make_dataset.py
+│     │
+│     ├── features            <- preprocess raw features from the dataset
+│     │   ├── clean_corpus.py
+│     │   ├── shrink_corpus.py
+│     │   ├── embed_corpus.py
+│     │   └── preprocess.py
+│     │
+│     ├── models         <- Scripts to train models and then use trained models to make predictions                 
+│     │   ├── predict_model.py
+│     │   └── train_model.py
+│     │
+│     └── visualization  <- Scripts to create exploratory and results oriented visualizations
 │       └── visualize.py
 │
 ├── requirements.txt
