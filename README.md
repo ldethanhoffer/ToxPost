@@ -83,10 +83,6 @@ To see how the was preprocessed, follow along the preprocessing notebook. We can
 3. embedding each word in a comment in 100d space using GloVe
 4. applying pca to in turn embed each word into 25d space
 5. apply the necessary padding
-
-
-
-
 ```
 
 
