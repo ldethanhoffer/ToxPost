@@ -15,47 +15,59 @@ from resources.glove.load_embedding import load_embedding
 
 
 def preprocess():
-    input_path = "./data/raw/data.csv"
+    raw_path = "./data/raw/data.csv"
     cleaned_path = "./data/cleaned/data.csv"
+    shrunken_path = "./data/shrunken/data.csv"
     embedded_path = "./data/embedded/data.csv"
+
     embedding_file = "./resources/glove/glove.twitter.27B.25d.txt"
     length = 100
     dim = 20
 
     # load the data:
     print("..loading the data..")
-    data = load_data(input_path, header=True, id=True)
+    data = load_data(raw_path, header=True, id=True)
     corpus = [datapoint[0] for datapoint in data]
+    labels = [datapoint[1] for datapoint in data]
 
-    # clean the corpus:
+    # clean the documents in the corpus:
     print("..using NLP to clean each comment in the corpus.. ")
     cleaned_corpus = clean_corpus(corpus)
-
-    # shrink the comments in the corpus:
-    print("..using TfIdf to shrink each comment in the corpus to size {}..".format(length))
-    shrunken_corpus = shrink_corpus(cleaned_corpus, length)
-    # write the results in the cleaned data file:
+    cleaned_data = [list(datapoint) for datapoint in zip(cleaned_corpus, labels)]
+    # write the results:
+    print("..writing the results to the cleaned data file")
     with open(cleaned_path, "w") as f:
         wr = csv.writer(f, delimiter="\n")
-        wr.writerow(shrunken_corpus)
+        wr.writerow(cleaned_data)
+
+    # shrink the documents in the corpus:
+    print("..using TfIdf to shrink each comment in the corpus to size {}..\n".format(length))
+    shrunken_corpus = shrink_corpus(cleaned_corpus, length)
+    shrunken_data = [list(datapoint) for datapoint in zip(shrunken_corpus, labels)]
+    # write the results:
+    print("..writing the results to the shrunken data file..")
+    with open(shrunken_path, "w") as f:
+        wr = csv.writer(f, delimiter="\n")
+        wr.writerow(shrunken_data)
 
     # obtain the Glove embedding:
     print("..loading the Glove embedding..")
     embedding = load_embedding(embedding_file)
 
-    # embed the corpus:
+    # embed the documents in the corpus:
     print("using PCA to reduce the embedding space of each word to size {}".format(dim))
     embedded_corpus = embed_corpus(shrunken_corpus, embedding, dim)
-    print("..writing the results to file..")
-    # write the results in the embedded data file
+    embedded_data = [list(datapoint) for datapoint in zip(embedded_corpus, labels)]
+    print("..writing the results to the embedded data file..")
+    # write the results:
     with open(embedded_path, "w") as f:
         wr = csv.writer(f, delimiter="\n")
-        wr.writerow(embedded_corpus)
+        wr.writerow(embedded_data)
     print("..data preprocesssed..")
 
     # balance the dataset
 
 
 # Driver
-if __name__ == "__main__":
+if __name__ == "src.features.preprocess":
     preprocess()
