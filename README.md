@@ -40,16 +40,16 @@ In order to fit a neural net on the corpus, we will embed each word into a vecto
 ```
 │
 ├── data
-│   ├── raw             <- the original data
-│   ├── cleaned         <- the  cleaned dats
-│   ├── shrunken        <- the shrunken data
-│   └── embedded        <- the embedded data
+│   ├── raw         <- the original data
+│   ├── cleaned     <- the cleaned data
+│   ├── shrunken    <- the shrunken data
+│   └── embedded    <- the embedded data
 │
-│
-├── models             <- Trained and serialized models, model predictions, or model summaries
+├── models             <- Trained models, model predictions, or model summaries
 │
 ├── notebooks
-│   ├── preprocess     <- guides you through the preprocessing steps   
+│   ├── explore        <- guides you through the data exploration steps 
+│   └── preprocess     <- guides you through the preprocessing steps   
 │
 │
 ├── src 
@@ -70,7 +70,7 @@ In order to fit a neural net on the corpus, we will embed each word into a vecto
 │
 ├── requirements.txt
 │   
-└── README.md          
+└── README.md    <- the file you're looking at!          
 ```
 
 
