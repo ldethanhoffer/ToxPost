@@ -81,7 +81,7 @@ To see how the was preprocessed, follow along the preprocessing notebook. We can
 1. cleaning each comment: removing numbers, links, stopwords, hyphenation, non ascii-characters etc.  
 2. using TfIdf to shrink each comment to a length of at most 60
 3. embedding each word in a comment in 100d space using GloVe
-4 applying pca to in turn embed each word into 25d space
+4. applying pca to in turn embed each word into 25d space
 5. apply the necessary padding
 
 
