@@ -55,10 +55,10 @@ def preprocess():
     embedding = load_embedding(embedding_file)
 
     # embed the documents in the corpus:
-    print("using PCA to reduce the embedding space of each word to size {}".format(dim))
+    print("..using PCA to reduce the embedding space of each word to size {}..".format(dim))
     embedded_corpus = embed_corpus(shrunken_corpus, embedding, dim)
     embedded_data = [list(datapoint) for datapoint in zip(embedded_corpus, labels)]
-    print("..writing the results to the embedded data file..")
+    print("..writing the results to the embedded data file. (this takes a while).")
     # write the results:
     with open(embedded_path, "w") as f:
         wr = csv.writer(f, delimiter="\n")
