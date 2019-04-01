@@ -61,6 +61,8 @@ def shrink_corpus(corpus, length):
         # get the corresponding column-index for each score
         top_word_indices = [indices[j] for j in top_entries]
         # get the corresponding word for each column index:
-        shrunken_comment = [column_to_vocab[j] for j in top_word_indices]
+        top_words = [column_to_vocab[j] for j in top_word_indices]
+        # shrink the commentt
+        shrunken_comment = [word for word in corpus[i] if word in top_words]
         new_corpus.append(shrunken_comment)
     return new_corpus
