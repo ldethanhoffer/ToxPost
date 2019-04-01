@@ -40,9 +40,10 @@ In order to fit a neural net on the corpus, we will embed each word into a vecto
 ```
 │
 ├── data
-│   ├── raw             <- the original, immutable data
-│   ├── interim         <- cleaned, embedded data, not yet balanced
-│   └── processed       <- the final dataset, ready to be trained
+│   ├── raw             <- the original data
+│   ├── cleaned         <- the  cleaned dats
+│   ├── shrunken        <- the shrunken data
+│   └── embedded        <- the embedded data
 │
 │
 ├── models             <- Trained and serialized models, model predictions, or model summaries
@@ -52,7 +53,7 @@ In order to fit a neural net on the corpus, we will embed each word into a vecto
 │
 │
 ├── src 
-│   ├── __init__.py    <- Makes src a Python module
+│   ├── __init__.py
 │   │
 │   ├── data           <- Scripts to download or generate data
 │   │   └── make_dataset.py
