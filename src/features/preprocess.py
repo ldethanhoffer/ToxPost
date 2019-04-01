@@ -31,7 +31,7 @@ def preprocess():
     labels = [datapoint[1] for datapoint in data]
 
     # clean the documents in the corpus:
-    print("..using NLP to clean each comment in the corpus.. ")
+    print("..using NLP to clean each comment in the corpus..")
     cleaned_corpus = clean_corpus(corpus)
     cleaned_data = [list(datapoint) for datapoint in zip(cleaned_corpus, labels)]
     # write the results:
@@ -51,7 +51,7 @@ def preprocess():
         wr.writerow(shrunken_data)
 
     # obtain the Glove embedding:
-    print("..loading the Glove embedding..")
+    print("\n..loading the Glove embedding..")
     embedding = load_embedding(embedding_file)
 
     # embed the documents in the corpus:
@@ -63,7 +63,7 @@ def preprocess():
     with open(embedded_path, "w") as f:
         wr = csv.writer(f, delimiter="\n")
         wr.writerow(embedded_data)
-    print("..data preprocesssed..")
+    print("\n..data preprocesssed..")
 
     # balance the dataset
 
