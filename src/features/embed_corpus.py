@@ -7,7 +7,6 @@ input:
 """
 from sklearn.decomposition import PCA
 import tqdm
-import numpy
 
 """
 pca_reduce_features
