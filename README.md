@@ -4,7 +4,7 @@
 ------------
 
 This project aims to describe the toxicity of a comment posted on an online forum.
-To follow along, check out this [Jupyter notebook](https://github.com/ldethanhoffer/ToxPost/blob/master/notebooks/overview.ipynb)
+For an overview, follow along this [Jupyter notebook](https://github.com/ldethanhoffer/ToxPost/blob/master/notebooks/overview.ipynb)
 
 To achieve this, we'll design and train a neural net on a corpus of 150.000 comments obtained from [Youtube](https://www.youtube.com).
 
@@ -62,7 +62,7 @@ In order to fit a neural net on the corpus, we will embed each word into a vecto
 │
 ├── requirements.txt
 │   
-└── README.md    <- the file you're looking at!          
+└── README.md                 <- the file you're looking at!          
 ```
 
 
@@ -70,12 +70,12 @@ In order to fit a neural net on the corpus, we will embed each word into a vecto
 ------------
 To see how the raw data was preprocessed, follow along the [preprocessing notebook](https://github.com/ldethanhoffer/ToxPost/blob/master/notebooks/preprocessing.ipynb). 
 We can summarize the pipeline as follows:
-```
-1. cleaning each comment: removing numbers, links, stopwords, hyphenation, non ascii-characters etc.  
-2. using TfIdf to shrink each comment to a length of at most 60
-3. embedding each word in a comment in 100d space using GloVe
-4. applying pca to in turn embed each word into 25d space
-5. apply the necessary padding
-```
+
+1. clean each comment: removing numbers, links, stopwords, hyphenation, non ascii-characters etc.  
+2. use TfIdf to shrink each comment to a length of at most 60
+3. embed each word in a comment in \\(mathbb{R}^{100}\\) using [GloVe](https://nlp.stanford.edu/projects/glove/)
+4. apply pca in turn embed to each word into \\(\mathbb{R}^{25}\\)
+5. (optional) apply the necessary padding
+
 
 
