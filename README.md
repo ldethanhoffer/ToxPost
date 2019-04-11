@@ -56,11 +56,11 @@ In order to fit a neural net on the corpus, we will embed each word into a vecto
 │     │   ├── embed_corpus.py
 │     │   └── preprocess.py
 │     │
-│     ├── models         <- Scripts to train models and then use trained models to make predictions                 
+│     ├── models              <- Scripts to train models and then use trained models to make predictions                 
 │     │   ├── predict_model.py
 │     │   └── train_model.py
 │     │
-│     └── visualization  <- Scripts to create exploratory and results oriented visualizations
+│     └── visualization       <- Scripts to create exploratory and results oriented visualizations
 │      └── visualize.py
 │
 ├── requirements.txt
