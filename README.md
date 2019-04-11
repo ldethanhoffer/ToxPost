@@ -4,26 +4,17 @@
 ------------
 
 This project aims to describe the toxicity of a comment posted on an online forum.
+To follow along, check out this [Jupyter notebook](https://github.com/ldethanhoffer/ToxPost/blob/master/notebooks/previous_version.ipynb)
 
-We will break down the concept of toxicity into 6 different __categories__:
+To achieve this, we'll design and train a neural net on a corpus of 150.000 comments obtained from [Youtube](https://www.youtube.com).
+
+For each comment in the corpus, we assign a __toxicity__ label consisting of 6 different binary  __categories__:
 
 <center>
 toxicity, severe toxicity, obscanity, threat, insult and identity hate
 </center>
 
 
-To achieve this, we'll design and train a neural net on a dataset of YouTube comments retreived from a [Kaggle competition](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/data).  
-
-This dataset will consist of a __corpus__ of  __comments__ together with their associated __labels__ which in turn consist of 6 binary  __categories__
-
-We'll begin by _cleaning up_ the comments:  
-Since a lot of the words in each comments are irrelevant for the purposes of detecting toxicity: stopwords, hyperlinks, spelling mistakes, characters, etc.. It makes sense to remove those from the comments
-
-Next, we'll reduce the data
-
-First, we will analyze the distribution of comment lengths 
-
-We will analyze the distribution of labels. it will be clear that the data is skewed in the sense that the overwhelming majority of comments exhibit no toxicity, to remedy this we will shrink the dataset
 
 
 Next, we will preprocess the data
@@ -79,8 +70,8 @@ In order to fit a neural net on the corpus, we will embed each word into a vecto
 
 ### preprocessing pipeline
 ------------
-To see how the was preprocessed, follow along the preprocessing notebook. We can summarize the steps as follows:
-
+To see how the was preprocessed, follow along the [preprocessing notebook](https://github.com/ldethanhoffer/ToxPost/blob/master/notebooks/preprocessing.ipynb). 
+We can summarize the pipeline as follows:
 ```
 1. cleaning each comment: removing numbers, links, stopwords, hyphenation, non ascii-characters etc.  
 2. using TfIdf to shrink each comment to a length of at most 60
