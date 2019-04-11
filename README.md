@@ -14,10 +14,7 @@ For each comment in the corpus, we assign a __toxicity__ label consisting of 6 d
 toxicity, severe toxicity, obscanity, threat, insult and identity hate
 </center>
 
-
-
-
-Next, we will preprocess the data
+Next, we'll preprocess the data...
 
 After that, we will fit both a feedforward neural net as well as an LSTM
 
@@ -45,9 +42,9 @@ In order to fit a neural net on the corpus, we will embed each word into a vecto
 │
 │
 ├── src 
-│     ├── __init__.py         <- turns the file into a py module
+│     ├── __init__.py         <- turns the directory into a .py module
 │     │
-│     ├── data                <- scipt to import the raw data
+│     ├── data                <- import the raw data
 │     │   └── make_dataset.py
 │     │
 │     ├── features            <- preprocess raw features from the dataset
@@ -56,11 +53,11 @@ In order to fit a neural net on the corpus, we will embed each word into a vecto
 │     │   ├── embed_corpus.py
 │     │   └── preprocess.py
 │     │
-│     ├── models              <- Scripts to train models and then use trained models to make predictions                 
+│     ├── models              <- train models and then use trained models to make predictions                 
 │     │   ├── predict_model.py
 │     │   └── train_model.py
 │     │
-│     └── visualization       <- Scripts to create exploratory and results oriented visualizations
+│     └── visualization       <- create exploratory and results oriented visualizations
 │      └── visualize.py
 │
 ├── requirements.txt
@@ -71,7 +68,7 @@ In order to fit a neural net on the corpus, we will embed each word into a vecto
 
 ### preprocessing pipeline
 ------------
-To see how the was preprocessed, follow along the [preprocessing notebook](https://github.com/ldethanhoffer/ToxPost/blob/master/notebooks/preprocessing.ipynb). 
+To see how the raw data was preprocessed, follow along the [preprocessing notebook](https://github.com/ldethanhoffer/ToxPost/blob/master/notebooks/preprocessing.ipynb). 
 We can summarize the pipeline as follows:
 ```
 1. cleaning each comment: removing numbers, links, stopwords, hyphenation, non ascii-characters etc.  
