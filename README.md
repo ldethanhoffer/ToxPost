@@ -40,7 +40,8 @@ In order to fit a neural net on the corpus, we will embed each word into a vecto
 │
 ├── notebooks
 │     ├── explore            <- guides you through the data exploration steps 
-│     └── preprocess         <- guides you through the preprocessing steps   
+│     └── preprocess         <- guides you through the preprocessing steps
+│     └── overview           <- gives a high level overview of the project  
 │
 │
 ├── src 
