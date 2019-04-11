@@ -73,7 +73,7 @@ We can summarize the pipeline as follows:
 
 1. clean each comment: removing numbers, links, stopwords, hyphenation, non ascii-characters etc.  
 2. use TfIdf to shrink each comment to a length of at most 60
-3. embed each word in a comment in \\(mathbb{R}^{100}\\) using [GloVe](https://nlp.stanford.edu/projects/glove/)
+3. embed each word in a comment in \(mathbb{R}^{100}\) using [GloVe](https://nlp.stanford.edu/projects/glove/)
 4. apply pca in turn embed to each word into \\(\mathbb{R}^{25}\\)
 5. (optional) apply the necessary padding
 
