@@ -7,7 +7,7 @@ A module that preprocesses a tokenized document. It contains the functions:
 
 """
 import csv
-from src.data.make_dataset import load_data
+from src.load import load_data
 from src.features.clean_corpus import clean_corpus
 from src.features.shrink_corpus import shrink_corpus
 from src.features.embed_corpus import embed_corpus
@@ -34,7 +34,7 @@ def preprocess():
     print("..using NLP to clean each comment in the corpus..")
     cleaned_corpus = clean_corpus(corpus)
     cleaned_data = [list(datapoint) for datapoint in zip(cleaned_corpus, labels)]
-    # write the results:
+    # export the results:
     print("..writing the results to the cleaned data file")
     with open(cleaned_path, "w") as f:
         wr = csv.writer(f, delimiter="\n")
@@ -44,7 +44,7 @@ def preprocess():
     print("..using TfIdf to shrink each comment in the corpus to size {}..\n".format(length))
     shrunken_corpus = shrink_corpus(cleaned_corpus, length)
     shrunken_data = [list(datapoint) for datapoint in zip(shrunken_corpus, labels)]
-    # write the results:
+    # export the results:
     print("..writing the results to the shrunken data file..")
     with open(shrunken_path, "w") as f:
         wr = csv.writer(f, delimiter="\n")
@@ -59,7 +59,7 @@ def preprocess():
     embedded_corpus = embed_corpus(shrunken_corpus, embedding, dim)
     embedded_data = [list(datapoint) for datapoint in zip(embedded_corpus, labels)]
     print("..writing the results to the embedded data file. (this takes a while)..")
-    # write the results:
+    # export the results:
     with open(embedded_path, "w") as f:
         wr = csv.writer(f, delimiter="\n")
         wr.writerow(embedded_data)
