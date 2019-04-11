@@ -4,7 +4,7 @@
 ------------
 
 This project aims to describe the toxicity of a comment posted on an online forum.
-To follow along, check out this [Jupyter notebook](https://github.com/ldethanhoffer/ToxPost/blob/master/notebooks/previous_version.ipynb)
+To follow along, check out this [Jupyter notebook](https://github.com/ldethanhoffer/ToxPost/blob/master/notebooks/overview.ipynb)
 
 To achieve this, we'll design and train a neural net on a corpus of 150.000 comments obtained from [Youtube](https://www.youtube.com).
 
