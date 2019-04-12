@@ -1,4 +1,4 @@
-# Detection of Toxic Comments
+# ToxPost: how toxic is an online comment?...
 
 ### Overview
 ------------
