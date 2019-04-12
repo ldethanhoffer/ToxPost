@@ -31,6 +31,7 @@ In order to fit a neural net on the corpus, we will embed each word into a vecto
 │    ├── cleaned            <- the cleaned data 
 │    ├── shrunken           <- the shrunken data
 │    └── embedded           <- the embedded data
+│    └── final              <- the final data
 │
 ├── models                  <- the Trained models
 │
@@ -44,21 +45,19 @@ In order to fit a neural net on the corpus, we will embed each word into a vecto
 ├── src 
 │     ├── __init__.py         <- turns the directory into a .py module
 │     │
-│     ├── data                <- import the raw data
-│     │   └── make_dataset.py
+│     ├── load.py             <- scripts to load the csv in multiple forms
 │     │
-│     ├── features            <- preprocess raw features from the dataset
+│     ├── visualize.py        <- scripts to visualize the loaded data
+│     │
+│     ├── features            <- scripts to preprocess the raw data
 │     │   ├── clean_corpus.py
 │     │   ├── shrink_corpus.py
 │     │   ├── embed_corpus.py
 │     │   └── preprocess.py
 │     │
 │     ├── models              <- train models and then use trained models to make predictions                 
-│     │   ├── predict_model.py
-│     │   └── train_model.py
-│     │
-│     └── visualization       <- create exploratory and results oriented visualizations
-│      └── visualize.py
+│         ├── predict_model.py
+│         └── train_model.py
 │
 ├── requirements.txt
 │   
