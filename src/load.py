@@ -79,5 +79,4 @@ def load_dataframe(filename=" ", header=None, id_tag=None):
 
     if id_tag is True:
         df = df.drop(df.columns[0], axis=1)
-    df = df.set_index(df.columns[0])
     return df
