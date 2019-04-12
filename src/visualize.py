@@ -20,10 +20,10 @@ def desc_stats(ser):
 
     # the outlier range (following Tukey's rule):
     outlier_range = [freq_stats.loc["25%"] - 1.5 * IQR, freq_stats.loc["75%"] + 1.5 * IQR]
-    freq_stats["outlier range"] = outlier_range
+    freq_stats["outlier_range"] = outlier_range
 
     # the number of outliers:
     nr_outliers = [len(ser.loc[ser < outlier_range[0]]), len(ser.loc[ser < outlier_range[1]])]
-    freq_stats["nr of outliers"] = nr_outliers
+    freq_stats["nr_outliers"] = nr_outliers
 
     return freq_stats
